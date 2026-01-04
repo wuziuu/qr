@@ -16,10 +16,19 @@ body {
 }
 
 body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #ffffff;
   min-height: 100vh;
   padding: 2rem;
+  position: relative;
+  overflow-x: hidden;
 }
+
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+}
+
 
 a {
   color: inherit;

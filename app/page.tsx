@@ -8,12 +8,8 @@ import styles from './page.module.css';
 export default function Home() {
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterConfig | null>(null);
 
-  const handleCreateQR = (character: CharacterConfig) => {
+  const handleSelectCharacter = (character: CharacterConfig) => {
     setSelectedCharacter(character);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedCharacter(null);
   };
 
   return (
@@ -23,40 +19,29 @@ export default function Home() {
         <p className={styles.subtitle}>Chọn nhân vật yêu thích và tạo QR code độc đáo</p>
       </header>
 
-      <div className={styles.grid}>
+      <div className={styles.charactersGrid}>
         {characters.map((character) => (
-          <div key={character.id} className={styles.card}>
-            <div className={styles.imageContainer}>
-              <img
-                src={character.image}
-                alt={character.name}
-                className={styles.characterImage}
-              />
-              <div
-                className={styles.colorBar}
-                style={{ backgroundColor: character.color.hex }}
-              />
-            </div>
-            <div className={styles.cardContent}>
-              <h2 className={styles.characterName}>{character.name}</h2>
-              <button
-                className={styles.createButton}
-                onClick={() => handleCreateQR(character)}
-                style={{ backgroundColor: character.color.hex }}
-              >
-                Tạo QR Code
-              </button>
-            </div>
+          <div
+            key={character.id}
+            className={`${styles.characterCard} ${selectedCharacter?.id === character.id ? styles.selected : ''}`}
+            onClick={() => handleSelectCharacter(character)}
+          >
+            <img
+              src={character.image}
+              alt={character.name}
+              className={styles.characterImage}
+            />
+            <p className={styles.characterName}>{character.name}</p>
           </div>
         ))}
       </div>
 
-      {selectedCharacter && (
+      <div className={styles.uploadSection}>
         <QRModal
           character={selectedCharacter}
-          onClose={handleCloseModal}
+          onClose={() => setSelectedCharacter(null)}
         />
-      )}
+      </div>
     </div>
   );
 }
