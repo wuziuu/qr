@@ -34,3 +34,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Old PHP files and folders (already copied to public)
+/Chii-Chobits/
+/conan/
+/Evernight/
+/March 7th/
+/Nefer/
+/Yumemizuki Mizuki/
+/demo-img/
+
